@@ -1,0 +1,21 @@
+@use '../../../styles/colors';
+
+.base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__disabled {
+    background-color: colors.$disabled_bg;
+    color: colors.$disabled_text;
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+.button {
+  background-color: colors.$grey;
+  border: none;
+  cursor: pointer;
+}

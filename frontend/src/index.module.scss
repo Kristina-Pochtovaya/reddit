@@ -1,0 +1,47 @@
+@use './styles/colors';
+@use './styles/dimensions';
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.header {
+  & > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.actionButtonBase {
+  height: dimensions.$header-height;
+}
+
+.actionButton {
+  border-radius: 15px;
+  min-width: 75px;
+  height: 100%;
+}
+
+.actionButton {
+  border-radius: 15px;
+  min-width: 75px;
+
+  .actions &__sign {
+    background-color: colors.$orange;
+    color: colors.$white;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "liveServer.settings.port": 5501,
+  "editor.formatOnSave": true, // Автоформат при сохранении
+  "editor.tabSize": 2, // Количество пробелов в отступах
+  "editor.insertSpaces": true, // Использовать пробелы вместо табов
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Установить Prettier как основной форматтер
+  "css.validate": true, // Включить проверку CSS
+  "css.format.enable": true, // Включить форматирование CSS
+  "css.format.spaceAroundSelectorSeparator": true, // Пробелы вокруг запятых в селекторах
+  "css.lint.unknownProperties": "ignore", // Отключить предупреждения о неизвестных свойствах
+  "html.format.wrapLineLength": 120, // Ограничение длины строки
+  "html.format.indentInnerHtml": true, // Отступ внутри <html>
+  "prettier.singleQuote": true, // Одинарные кавычки
+  "prettier.useTabs": false, // Использовать пробелы вместо табов
+  "prettier.tabWidth": 2, // Размер отступа
+  "prettier.bracketSpacing": true, // Пробелы между скобками { key: value }
+  "prettier.semi": false,
+  "prettier.bracketSameLine": false,
+  "typescript.reportDiagnostics": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "stylelint.enable": true,
+  "prettier.singleAttributePerLine": false,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  } // Убрать точку с запятой
+}

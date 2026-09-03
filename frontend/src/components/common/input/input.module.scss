@@ -1,0 +1,31 @@
+@use '../../../styles/colors';
+
+.base {
+  padding: 10px 0;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  border: none;
+  background-color: colors.$grey;
+  outline: none;
+  padding: 5px 10px;
+
+  &:hover:not(:focus) {
+    cursor: default;
+  }
+
+  &:disabled {
+    background-color: colors.$disabled_bg;
+    color: colors.$disabled_text;
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+    border-radius: 25px;
+  }
+}

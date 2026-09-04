@@ -6,14 +6,14 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { Input } from '../common/input/input'
 import { Button } from '../common/button/button'
 
-export type SearchField = {
+export type SearchFieldProps = {
   classNames?: {
     base?: string
     container?: string
   }
 }
 
-export function SearchField({ classNames }: SearchField) {
+export function SearchField({ classNames }: SearchFieldProps) {
   return (
     <div className={clsx(styles.base, classNames?.base)}>
       <div className={clsx(styles.container, classNames?.container)}>

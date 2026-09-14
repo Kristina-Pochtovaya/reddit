@@ -5,6 +5,7 @@ import { SearchField } from './components/search_field/search_field'
 import { Button } from './components/common/button/button'
 import styles from './index.module.scss'
 import clsx from 'clsx'
+
 import { Posts } from './components/posts/posts'
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
           </Button>
         </div>
       </Header>
-      <Posts>posts</Posts>
+      <Posts />
     </>
   )
 }

@@ -1,0 +1,7 @@
+@use '../../../styles/colors';
+
+.base {
+  background-color: colors.$divider;
+  height: 1px;
+  width: 100%;
+}

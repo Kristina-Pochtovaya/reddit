@@ -1,0 +1,71 @@
+@use '../../styles/colors';
+
+.base {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  & > *:not(:last-child) {
+    margin-bottom: 3px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.author {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.date {
+  color: colors.$date;
+}
+
+.circle {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: colors.$date;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.link {
+  color: colors.$link;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: colors.$link_visited;
+  }
+}
+
+.image {
+  object-fit: cover;
+}

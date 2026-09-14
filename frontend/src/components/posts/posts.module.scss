@@ -1,5 +1,16 @@
+@use '../../styles/colors';
+
 .base {
+  padding: 20px 0;
+}
+
+.container {
+  padding: 0 40px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }

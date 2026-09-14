@@ -29,8 +29,8 @@ export function Image({
         className={clsx(styles.image, classNames?.image)}
         src={src}
         alt={alt}
-        width={width || '15px'}
-        height={height || '15px'}
+        width={width}
+        height={height}
         onClick={onClick}
         onMouseEnter={onHover}
       />

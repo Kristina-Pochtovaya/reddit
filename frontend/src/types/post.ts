@@ -12,8 +12,14 @@ export type PostContent =
       imageUrl: string
     }
 
+export type Author = {
+  name: string
+  avatar: string
+}
+
 export type Post = {
-  authorName: string
+  id: string
+  author: Author
   createdAt: string
   editedAt: string | null
   title: string

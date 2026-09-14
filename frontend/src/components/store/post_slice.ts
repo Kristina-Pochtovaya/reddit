@@ -1,17 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { Post } from '../../types/post'
 import type { RootState } from './store'
+import { posts } from '../../mock/mocked_post'
 
-const initialState: Post = {
-  authorName: '',
-  createdAt: new Date().toLocaleString(),
-  editedAt: null,
-  title: '',
-  content: {
-    type: 'text',
-    text: '',
-  },
-}
+const initialState: Post = posts[0]
+
+// {
+//   authorName: '',
+//   createdAt: new Date().toLocaleString(),
+//   editedAt: null,
+//   title: '',
+//   content: {
+//     type: 'text',
+//     text: '',
+//   },
+// }
 
 export const postSlice = createSlice({
   name: 'post',

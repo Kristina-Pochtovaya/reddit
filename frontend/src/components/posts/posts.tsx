@@ -1,16 +1,36 @@
 import clsx from 'clsx'
 import styles from './posts.module.scss'
-import { useState } from 'react'
+import { posts as mockedPosts } from '../../mock/mocked_post'
+import { useEffect, useState } from 'react'
+import type { Post as PostType } from '../../types/post'
+import { Post } from '../post/post'
+import { Divider } from '../common/divider/divider'
 
 export type PostsProps = {
-  children: React.ReactNode
   classNames?: {
     base?: string
+    container?: string
   }
 }
 
-export function Posts({ children, classNames }: PostsProps) {
-  const [] = useState([])
+export function Posts({ classNames }: PostsProps) {
+  const [posts, setPosts] = useState<PostType[]>([])
 
-  return <div className={clsx(styles.base, classNames?.base)}>{children}</div>
+  useEffect(() => {
+    setPosts(mockedPosts)
+    console.log(mockedPosts)
+  }, [])
+
+  return (
+    <div className={clsx(styles.base, classNames?.base)}>
+      <div className={clsx(styles.container, classNames?.container)}>
+        {posts.map((post) => (
+          <>
+            <Post key={post.id} {...post} />
+            <Divider />
+          </>
+        ))}
+      </div>
+    </div>
+  )
 }

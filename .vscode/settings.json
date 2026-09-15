@@ -16,7 +16,6 @@
   "prettier.bracketSpacing": true, // Пробелы между скобками { key: value }
   "prettier.semi": false,
   "prettier.bracketSameLine": false,
-  "typescript.reportDiagnostics": false,
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

@@ -26,16 +26,16 @@ export function Post({
             classNames={{ image: styles.image }}
             width={350}
             height={350}
-            src={content.imageUrl}
+            src={content.data}
             alt="post"
           />
         )}
         {content.type === 'link' && (
-          <a className={styles.link} href={content.url} target="_blank">
-            {content.url}
+          <a className={styles.link} href={content.data} target="_blank">
+            {content.data}
           </a>
         )}
-        <div>{content.type === 'text' && content.text}</div>
+        {content.type === 'text' && <div>{content.data}</div>}
       </div>
     </div>
   )

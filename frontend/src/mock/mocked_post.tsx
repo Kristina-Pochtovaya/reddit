@@ -13,7 +13,7 @@ export const posts: Post[] = [
     title: 'Classic Margherita Pizza',
     content: {
       type: 'text',
-      text: 'Preheat the oven to 475°F (245°C).Roll out the pizza dough and spread tomato sauce evenly. Top with slices of fresh mozzarella and fresh basil leaves. Drizzle with olive oil and season with salt and pepper. Bake in the preheated oven for 12-15 minutes or until the crust is golden brown. Slice and serve hot.',
+      data: 'Preheat the oven to 475°F (245°C).Roll out the pizza dough and spread tomato sauce evenly. Top with slices of fresh mozzarella and fresh basil leaves. Drizzle with olive oil and season with salt and pepper. Bake in the preheated oven for 12-15 minutes or until the crust is golden brown. Slice and serve hot.',
     },
   },
   {
@@ -27,7 +27,7 @@ export const posts: Post[] = [
     title: 'Interesting article',
     content: {
       type: 'link',
-      url: 'https://dummyjson.com/recipes/search?q=Margherita',
+      data: 'https://dummyjson.com/recipes/search?q=Margherita',
     },
   },
   {
@@ -41,7 +41,7 @@ export const posts: Post[] = [
     title: 'Pizza',
     content: {
       type: 'image',
-      imageUrl: 'https://cdn.dummyjson.com/recipe-images/1.webp',
+      data: 'https://cdn.dummyjson.com/recipe-images/1.webp',
     },
   },
 ]

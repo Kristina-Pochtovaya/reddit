@@ -15,6 +15,10 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
+    rules: {
+      'react-hooks/exhaustive-deps': 'warn',
+    },
+
     languageOptions: {
       globals: globals.browser,
     },

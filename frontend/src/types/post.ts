@@ -1,16 +1,13 @@
-export type PostContent =
-  | {
-      type: 'text'
-      text: string
-    }
-  | {
-      type: 'link'
-      url: string
-    }
-  | {
-      type: 'image'
-      imageUrl: string
-    }
+export const contentTypes = {
+  text: 'text',
+  link: 'link',
+  image: 'image',
+} as const
+
+export type PostContent = {
+  type: keyof typeof contentTypes
+  data: string
+}
 
 export type Author = {
   name: string

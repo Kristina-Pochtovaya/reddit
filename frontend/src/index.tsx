@@ -1,51 +1,21 @@
 import { Header } from './components/header/header'
-import { Image } from './components/common/image/image'
-import logo from './assets/logo.jpg'
-import { SearchField } from './components/search_field/search_field'
-import { Button } from './components/common/button/button'
 import styles from './index.module.scss'
-import clsx from 'clsx'
 
-import { Posts } from './components/posts/posts'
+import { Posts } from './pages/posts/posts'
+import { Navigate, Route, Routes } from 'react-router'
+import { NotFound } from './pages/not_found/not_found'
 
 function App() {
   return (
-    <>
-      <Header classNames={{ container: styles.header }}>
-        <Image src={logo} alt="logo" width={100} height={25} />
-        <SearchField />
-        <div className={styles.actions}>
-          <Button
-            classNames={{
-              base: styles.actionButtonBase,
-              button: clsx(styles.actionButton, styles.actionButton__sign),
-            }}
-            onClick={() => console.log('Sign Up')}
-          >
-            Sign Up
-          </Button>
-          <Button
-            classNames={{
-              base: styles.actionButtonBase,
-              button: styles.actionButton,
-            }}
-            onClick={() => console.log('Log In')}
-          >
-            Log In
-          </Button>
-          <Button
-            classNames={{
-              base: styles.actionButtonBase,
-              button: styles.actionButton,
-            }}
-            onClick={() => console.log('Log Out')}
-          >
-            Log Out
-          </Button>
-        </div>
-      </Header>
-      <Posts />
-    </>
+    <div className={styles.app}>
+      <Header classNames={{ container: styles.header }} />
+      <Routes>
+        <Route path="/" element={<Navigate to="/posts" replace />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/login" element={<Posts />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
   )
 }
 

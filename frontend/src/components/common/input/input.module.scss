@@ -12,7 +12,7 @@
 
 .input {
   border: none;
-  background-color: colors.$grey;
+  background-color: colors.$background_secondary;
   outline: none;
   padding: 5px 10px;
 
@@ -21,8 +21,8 @@
   }
 
   &:disabled {
-    background-color: colors.$disabled_bg;
-    color: colors.$disabled_text;
+    background-color: colors.$background_disabled;
+    color: colors.$text_disabled;
     pointer-events: none;
     cursor: default;
     opacity: 0.5;

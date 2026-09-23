@@ -1,0 +1,32 @@
+@use '../../styles/colors';
+
+.base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+
+  & > *:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.buttonWrapper {
+  height: 30px;
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  height: 100%;
+  background: colors.$secondary;
+  color: colors.$text_primary;
+  border-radius: 9999px;
+}
+
+.image {
+  object-fit: contain;
+}

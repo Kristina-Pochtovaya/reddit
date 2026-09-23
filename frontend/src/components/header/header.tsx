@@ -1,19 +1,52 @@
 import clsx from 'clsx'
 import styles from './header.module.scss'
+import { SearchField } from '../search_field/search_field'
+import { Image } from '../common/image/image'
+import { Button } from '../common/button/button'
+import logo from '../../assets/logo.jpg'
 
 export type HeaderProps = {
-  children: React.ReactNode
   classNames?: {
     base?: string
     container?: string
   }
 }
 
-export function Header({ children, classNames }: HeaderProps) {
+export function Header({ classNames }: HeaderProps) {
   return (
     <div className={clsx(styles.base, classNames?.base)}>
       <div className={clsx(styles.container, classNames?.container)}>
-        {children}
+        <Image src={logo} alt="logo" width={100} height={25} />
+        <SearchField />
+        <div className={styles.actions}>
+          <Button
+            classNames={{
+              base: styles.actionButtonBase,
+              button: clsx(styles.actionButton, styles.actionButton__sign),
+            }}
+            onClick={() => console.log('Sign Up')}
+          >
+            Sign Up
+          </Button>
+          <Button
+            classNames={{
+              base: styles.actionButtonBase,
+              button: styles.actionButton,
+            }}
+            onClick={() => console.log('Log In')}
+          >
+            Log In
+          </Button>
+          <Button
+            classNames={{
+              base: styles.actionButtonBase,
+              button: styles.actionButton,
+            }}
+            onClick={() => console.log('Log Out')}
+          >
+            Log Out
+          </Button>
+        </div>
       </div>
     </div>
   )

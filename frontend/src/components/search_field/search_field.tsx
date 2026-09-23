@@ -33,7 +33,7 @@ export function SearchField({ classNames }: SearchFieldProps) {
   return (
     <div className={clsx(styles.base, classNames?.base)}>
       <div className={clsx(styles.container, classNames?.container)}>
-        <Image src={search_icon} alt="Search Icon" height={20} width={20} />
+        <Image src={search_icon} alt="search" height={20} width={20} />
         <Input
           value={searchValue}
           onChange={handleOnChange}

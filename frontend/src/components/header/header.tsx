@@ -4,6 +4,7 @@ import { SearchField } from '../search_field/search_field'
 import { Image } from '../common/image/image'
 import { Button } from '../common/button/button'
 import logo from '../../assets/logo.jpg'
+import { useNavigate } from 'react-router'
 
 export type HeaderProps = {
   classNames?: {
@@ -13,6 +14,8 @@ export type HeaderProps = {
 }
 
 export function Header({ classNames }: HeaderProps) {
+  const navigate = useNavigate()
+
   return (
     <div className={clsx(styles.base, classNames?.base)}>
       <div className={clsx(styles.container, classNames?.container)}>
@@ -22,27 +25,27 @@ export function Header({ classNames }: HeaderProps) {
           <Button
             classNames={{
               base: styles.actionButtonBase,
-              button: clsx(styles.actionButton, styles.actionButton__sign),
+              button: styles.actionButton,
             }}
-            onClick={() => console.log('Sign Up')}
+            onClick={() => navigate('/auth')}
           >
             Sign Up
           </Button>
           <Button
             classNames={{
               base: styles.actionButtonBase,
-              button: styles.actionButton,
+              button: clsx(styles.actionButton, styles.actionButton__login),
             }}
-            onClick={() => console.log('Log In')}
+            onClick={() => navigate('/auth')}
           >
             Log In
           </Button>
           <Button
             classNames={{
               base: styles.actionButtonBase,
-              button: styles.actionButton,
+              button: clsx(styles.actionButton, styles.actionButton__login),
             }}
-            onClick={() => console.log('Log Out')}
+            onClick={() => navigate('/pages')}
           >
             Log Out
           </Button>

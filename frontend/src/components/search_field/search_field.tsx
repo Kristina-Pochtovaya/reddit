@@ -5,9 +5,8 @@ import search_icon from '../../assets/app_icon.png'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Input } from '../common/input/input'
 import { Button } from '../common/button/button'
-import { useDispatch } from 'react-redux'
-import { search } from '../store/post_slice'
-import { useState } from 'react'
+import { useSearchParams } from 'react-router'
+import { useEffect, useState } from 'react'
 
 export type SearchFieldProps = {
   classNames?: {
@@ -17,17 +16,44 @@ export type SearchFieldProps = {
 }
 
 export function SearchField({ classNames }: SearchFieldProps) {
+  const [, setSearchParams] = useSearchParams()
+  // *TO-DO remove  const [searchValue, setSearchValue] = useState('') as searchParams is one source of truth
+  // and move value.trim().toLowerCase() to backend
   const [searchValue, setSearchValue] = useState('')
-  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!searchValue.trim()) {
+      setSearchParams((params) => {
+        params.delete('search')
+        return params
+      })
+    }
+  }, [searchValue, setSearchParams])
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.target.value)
-    dispatch(search(event.target.value.toLowerCase().trim()))
+    const value = event.target.value
+
+    setSearchParams((params) => {
+      setSearchValue(value)
+
+      if (value.trim()) {
+        params.set('search', value.trim().toLowerCase())
+      } else {
+        params.delete('search')
+      }
+
+      return params
+    })
   }
 
   function handleOnClick() {
     setSearchValue('')
-    dispatch(search(''))
+
+    setSearchParams((params) => {
+      params.delete('search')
+
+      return params
+    })
   }
 
   return (

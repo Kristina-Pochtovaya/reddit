@@ -1,4 +1,4 @@
-@use '../../styles/colors';
+@use '../../../styles/colors';
 
 .overlay {
   position: fixed;
@@ -7,6 +7,14 @@
   align-items: center;
   justify-content: center;
   background: colors.$background_overlay;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  pointer-events: none;
+
+  &__visible {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 
 .base {

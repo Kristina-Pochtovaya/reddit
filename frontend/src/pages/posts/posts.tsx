@@ -1,12 +1,16 @@
 import clsx from 'clsx'
 import styles from './posts.module.scss'
 import { Post } from '../../components/post/post'
-import type { Post as PostType } from '../../types/post'
 import { Divider } from '../../components/common/divider/divider'
-import { getSearchString, selectPosts } from '../../components/store/post_slice'
+// import { getSearchString, selectPosts } from '../../components/store/post_slice'
+import { selectPosts } from '../../components/store/post_slice'
 import { useSelector } from 'react-redux'
 import { Fragment } from 'react/jsx-runtime'
-import { useMemo } from 'react'
+import { useEffect } from 'react'
+import { useAppDispatch } from '../../components/store/store'
+import { getPosts } from '../../components/store/thunks/posts'
+import { DEFAULT_DELAY, useDebounce } from '../../helpers/debounce'
+import { useSearchParams } from 'react-router'
 
 export type PostsProps = {
   classNames?: {
@@ -15,29 +19,22 @@ export type PostsProps = {
   }
 }
 
-function filterPost(searchString: string, posts: PostType[]) {
-  return searchString
-    ? posts.filter(
-        (post) =>
-          post.author.name.toLowerCase().includes(searchString) ||
-          post.content.data.toLowerCase().includes(searchString) ||
-          post.title.toLowerCase().includes(searchString),
-      )
-    : posts
-}
-
 export function Posts({ classNames }: PostsProps) {
   const posts = useSelector(selectPosts)
-  const searchString = useSelector(getSearchString)
-  const filteredPosts = useMemo(
-    () => filterPost(searchString, posts),
-    [posts, searchString],
-  )
+  const [searchParams] = useSearchParams()
+  const search = searchParams.get('search') ?? ''
+  const dispatch = useAppDispatch()
+
+  const debouncedSearch = useDebounce(search, DEFAULT_DELAY)
+
+  useEffect(() => {
+    dispatch(getPosts({ search: debouncedSearch }))
+  }, [dispatch, debouncedSearch])
 
   return (
     <div className={clsx(styles.base, classNames?.base)}>
       <div className={clsx(styles.container, classNames?.container)}>
-        {filteredPosts.map((post) => (
+        {posts.map((post) => (
           <Fragment key={post.id}>
             <Post {...post} />
             <Divider />

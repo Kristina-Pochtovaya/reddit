@@ -22,3 +22,8 @@ export type Post = {
   title: string
   content: PostContent
 }
+
+export type Params = {
+  search: string
+  limit?: number
+}

@@ -1,19 +1,25 @@
 import { Button } from '../../components/common/button/button'
 import { Input } from '../../components/common/input/input'
-import { PopUp } from '../../components/pop_up/pop_up'
+import { PopUp } from '../common/pop_up/pop_up'
 import ClearIcon from '@mui/icons-material/Clear'
 import styles from './auth_popup.module.scss'
+import clsx from 'clsx'
 
 export type AuthPopupProps = {
-  setPopupVisible: (popupVisible: boolean) => void
+  visible: boolean
+  setVisible: (visible: boolean) => void
 }
 
-export function AuthPopup({ setPopupVisible }: AuthPopupProps) {
+export function AuthPopup({ visible, setVisible }: AuthPopupProps) {
   return (
-    <PopUp className={styles.popup} onClose={() => setPopupVisible(false)}>
+    <PopUp
+      visible={visible}
+      className={clsx(styles.popup, visible && styles.popup__visible)}
+      onClose={() => setVisible(false)}
+    >
       <div className={styles.header}>
         <Button
-          onClick={() => setPopupVisible(false)}
+          onClick={() => setVisible(false)}
           classNames={{
             base: styles.clearButtonWrapper,
             button: styles.clearButton,
@@ -37,7 +43,7 @@ export function AuthPopup({ setPopupVisible }: AuthPopupProps) {
             base: styles.actionButtonBase,
             button: styles.actionButton,
           }}
-          onClick={() => setPopupVisible(false)}
+          onClick={() => setVisible(false)}
         >
           Send password
         </Button>

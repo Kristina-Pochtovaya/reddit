@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import postReducer from './post_slice'
 import authReducer from './auth_slice'
+import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
@@ -11,4 +12,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-// export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppDispatch = () => useDispatch<AppDispatch>()

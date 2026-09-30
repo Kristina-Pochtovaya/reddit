@@ -1,18 +1,84 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styles from './auth.module.scss'
-import { selectLogin, setLogin } from '../../components/store/auth_slice'
+import {
+  selectAuthed,
+  selectLogin,
+  setLogin,
+} from '../../components/store/auth_slice'
 import { Button } from '../../components/common/button/button'
 import { Input } from '../../components/common/input/input'
 import { Image } from '../../components/common/image/image'
 import app_icon from '../../assets/app_icon.png'
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AuthPopup } from '../../components/auth_popup/auth_popup'
+import { loginUser } from '../../components/store/thunks/user'
+
+import { useAppDispatch } from '../../components/store/store'
+import { credentails } from '../../mock/mocked_user'
+import type { Credentials } from '../../types/user'
+import { useNavigate } from 'react-router'
+
+export type InputValuesType = {
+  name: string
+  email: string
+  password: string
+}
 
 export function Auth() {
+  const googleButtonRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!window.google || !googleButtonRef.current) {
+      return
+    }
+
+    //*To-DO remove console after creating backend
+    window.google.accounts.id.initialize({
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      callback: (response) => {
+        console.log('GOOGLE RESPONSE:', response)
+        console.log('TOKEN:', response.credential)
+      },
+    })
+
+    window.google.accounts.id.renderButton(googleButtonRef.current, {
+      type: 'standard',
+      theme: 'outline',
+      size: 'medium',
+      text: 'continue_with',
+      shape: 'pill',
+      width: 175,
+    })
+  }, [])
+
   const [popupVisible, setPopupVisible] = useState(false)
+  const [inputValues, setInputvalues] = useState<Credentials>({
+    username: '',
+    password: '',
+    email: '',
+  })
+
   const login = useSelector(selectLogin)
-  const dispatch = useDispatch()
+  const authed = useSelector(selectAuthed)
+  const navigate = useNavigate()
+
+  const dispatch = useAppDispatch()
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+
+    setInputvalues((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  useEffect(() => {
+    if (authed) {
+      navigate('/posts')
+    }
+  }, [authed, navigate])
 
   return (
     <div className={styles.base}>
@@ -34,22 +100,25 @@ export function Auth() {
         <div className={styles.content}>
           {!login && (
             <Input
-              name={'name'}
-              placeholder="Name"
+              name={'email'}
+              type={'email'}
+              placeholder="Email"
               classNames={{ input: styles.input }}
+              onChange={handleChange}
             />
           )}
           <Input
-            name={'email'}
-            type={'email'}
-            placeholder="Email"
+            name={'name'}
+            placeholder="Name"
             classNames={{ input: styles.input }}
+            onChange={handleChange}
           />
           <Input
             name={'password'}
             type={'password'}
             placeholder="Password"
             classNames={{ input: styles.input }}
+            onChange={handleChange}
           />
 
           <Button
@@ -60,19 +129,16 @@ export function Auth() {
                 styles[`actionButton__${login ? 'login' : 'register'}`],
               ),
             }}
-            onClick={() => console.log(login ? 'Log In' : 'Sign Up')}
+            onClick={() =>
+              login
+                ? // ? dispatch(loginUser(inputValues))
+                  dispatch(loginUser(credentails))
+                : console.log('Sign Up')
+            }
           >
             {login ? 'Log In' : 'Create an account'}
           </Button>
-          <Button
-            classNames={{
-              base: styles.actionButtonBase,
-              button: styles.actionButton,
-            }}
-            onClick={() => console.log('Continue with Google')}
-          >
-            Continue with Google
-          </Button>
+          <div ref={googleButtonRef} />
         </div>
 
         <div className={styles.footer}>
@@ -108,8 +174,7 @@ export function Auth() {
           )}
         </div>
       </div>
-
-      {popupVisible && <AuthPopup setPopupVisible={setPopupVisible} />}
+      <AuthPopup visible={popupVisible} setVisible={setPopupVisible} />
     </div>
   )
 }

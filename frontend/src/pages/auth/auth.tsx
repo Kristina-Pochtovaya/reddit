@@ -13,10 +13,8 @@ import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { AuthPopup } from '../../components/auth_popup/auth_popup'
 import { loginUser } from '../../components/store/thunks/user'
-
 import { useAppDispatch } from '../../components/store/store'
-import { credentails } from '../../mock/mocked_user'
-import type { Credentials } from '../../types/user'
+import type { Credentials } from '../../types/auth'
 import { useNavigate } from 'react-router'
 
 export type InputValuesType = {
@@ -76,7 +74,7 @@ export function Auth() {
 
   useEffect(() => {
     if (authed) {
-      navigate('/posts')
+      navigate('/user')
     }
   }, [authed, navigate])
 
@@ -108,7 +106,7 @@ export function Auth() {
             />
           )}
           <Input
-            name={'name'}
+            name={'username'}
             placeholder="Name"
             classNames={{ input: styles.input }}
             onChange={handleChange}
@@ -131,9 +129,9 @@ export function Auth() {
             }}
             onClick={() =>
               login
-                ? // ? dispatch(loginUser(inputValues))
-                  dispatch(loginUser(credentails))
-                : console.log('Sign Up')
+                ? dispatch(loginUser(inputValues))
+                : //  ?  dispatch(loginUser(credentails))
+                  console.log('Sign Up')
             }
           >
             {login ? 'Log In' : 'Create an account'}

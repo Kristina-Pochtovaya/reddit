@@ -1,0 +1,46 @@
+@use '../../styles/dimensions';
+@use '../../styles/colors';
+
+.base {
+  padding: 20px 0;
+}
+
+.actions {
+  padding: 40px;
+  display: flex;
+
+  & > *:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+.posts {
+  padding: 0 40px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.buttonBase {
+  height: dimensions.$header-height;
+}
+
+.button {
+  height: 100%;
+  padding: 0 20px;
+  border-radius: 9999px;
+  border: solid colors.$border_primary 1px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 150px;
+}
+
+.icon {
+  margin-right: 5px;
+}

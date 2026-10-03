@@ -5,8 +5,11 @@ import search_icon from '../../assets/app_icon.png'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Input } from '../common/input/input'
 import { Button } from '../common/button/button'
-import { useSearchParams } from 'react-router'
+import { useLocation, useSearchParams } from 'react-router'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectAuthed } from '../store/auth_slice'
+import { selectUser } from '../store/user_slice'
 
 export type SearchFieldProps = {
   classNames?: {
@@ -20,6 +23,9 @@ export function SearchField({ classNames }: SearchFieldProps) {
   // *TO-DO remove  const [searchValue, setSearchValue] = useState('') as searchParams is one source of truth
   // and move value.trim().toLowerCase() to backend
   const [searchValue, setSearchValue] = useState('')
+  const authed = useSelector(selectAuthed)
+  const location = useLocation()
+  const user = useSelector(selectUser)
 
   useEffect(() => {
     if (!searchValue.trim()) {
@@ -35,7 +41,6 @@ export function SearchField({ classNames }: SearchFieldProps) {
 
     setSearchParams((params) => {
       setSearchValue(value)
-
       if (value.trim()) {
         params.set('search', value.trim().toLowerCase())
       } else {
@@ -63,9 +68,13 @@ export function SearchField({ classNames }: SearchFieldProps) {
         <Input
           value={searchValue}
           onChange={handleOnChange}
-          placeholder="Search Reddit"
+          placeholder={
+            authed && user && location.pathname.startsWith('/user')
+              ? `Search in ${user.name}`
+              : 'Search Reddit'
+          }
           name={'search_input'}
-          classNames={{ base: styles.baseInput }}
+          classNames={{ base: styles.baseInput, input: styles.input }}
         />
         <Button
           onClick={handleOnClick}

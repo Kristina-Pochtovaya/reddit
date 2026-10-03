@@ -1,10 +1,12 @@
 @use '../../styles/colors';
+@use '../../styles/dimensions';
 
 .base {
   font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 100%;
 
   & > *:not(:last-child) {
     margin-bottom: 3px;
@@ -49,7 +51,12 @@
 
 .content {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: 5px;
+  }
 }
 
 .link {
@@ -68,4 +75,16 @@
 
 .image {
   object-fit: cover;
+}
+
+.buttonBase {
+  height: dimensions.$header-height;
+}
+
+.button {
+  height: 100%;
+  padding: 0 20px;
+  border-radius: 9999px;
+  border: solid colors.$border_primary 1px;
+  background-color: transparent;
 }

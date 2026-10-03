@@ -32,17 +32,16 @@
 }
 
 .actionButton {
-  border-radius: 9999px;
-  min-width: 75px;
   height: 100%;
-}
-
-.actionButton {
+  padding: 0 20px;
   border-radius: 9999px;
-  min-width: 75px;
 
   .actions &__login {
     background-color: colors.$primary;
     color: colors.$text_primary;
   }
+}
+
+.actions .user {
+  background-color: transparent;
 }

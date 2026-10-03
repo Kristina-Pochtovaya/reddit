@@ -5,6 +5,7 @@ import { Posts } from './pages/posts/posts'
 import { Navigate, Route, Routes } from 'react-router'
 import { NotFound } from './pages/not_found/not_found'
 import { Auth } from './pages/auth/auth'
+import { User } from './pages/user/user'
 
 function App() {
   return (
@@ -21,6 +22,15 @@ function App() {
           }
         />
         <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/user"
+          element={
+            <>
+              <Header />
+              <User />
+            </>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

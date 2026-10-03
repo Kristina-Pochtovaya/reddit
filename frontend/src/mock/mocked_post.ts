@@ -44,4 +44,18 @@ export const posts: Post[] = [
       data: 'https://cdn.dummyjson.com/recipe-images/1.webp',
     },
   },
+  {
+    id: crypto.randomUUID(),
+    author: {
+      name: 'emilys',
+      avatar: 'https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/reddit.svg',
+    },
+    createdAt: formatDate('2026-08-03T07:50:00.000Z'),
+    editedAt: null,
+    title: 'Something interesting',
+    content: {
+      type: 'text',
+      data: 'Some interesting article.',
+    },
+  },
 ]

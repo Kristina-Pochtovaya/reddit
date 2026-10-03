@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux'
 import type { Post as PostType } from '../../types/post'
+import { Button } from '../common/button/button'
 import { Image } from '../common/image/image'
 import styles from './post.module.scss'
+import { selectUser } from '../store/user_slice'
+import { selectAuthed } from '../store/auth_slice'
 
 export function Post({
   title,
@@ -9,6 +13,9 @@ export function Post({
   editedAt,
   content,
 }: PostType) {
+  const user = useSelector(selectUser)
+  const auth = useSelector(selectAuthed)
+
   return (
     <div className={styles.base}>
       <div className={styles.header}>
@@ -36,6 +43,14 @@ export function Post({
           </a>
         )}
         {content.type === 'text' && <div>{content.data}</div>}
+        {auth && user?.name === author.name && (
+          <Button
+            classNames={{ base: styles.buttonBase, button: styles.button }}
+            onClick={() => console.log('Edit')}
+          >
+            Edit
+          </Button>
+        )}
       </div>
     </div>
   )

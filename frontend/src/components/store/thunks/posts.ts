@@ -3,7 +3,7 @@ import type { Params } from '../../../types/post'
 import api from '../../../axios'
 import { posts as mockedPosts } from '../../../mock/mocked_post'
 
-const DEFAULT_POSTS_LIMIT = 20
+// const DEFAULT_POSTS_LIMIT = 20
 
 export const getPosts = createAsyncThunk('posts', async (params: Params) => {
   // *TO-DO uncomment when backend will be implemented

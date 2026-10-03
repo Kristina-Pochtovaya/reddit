@@ -6,6 +6,7 @@ export type ImageProps = {
   alt: string
   width?: string | number
   height?: string | number
+  fallbackSrc?: string
   onClick?: () => void
   onHover?: () => void
   classNames?: {
@@ -19,6 +20,7 @@ export function Image({
   alt,
   width,
   height,
+  fallbackSrc,
   classNames,
   onClick,
   onHover,
@@ -33,6 +35,11 @@ export function Image({
         height={height}
         onClick={onClick}
         onMouseEnter={onHover}
+        onError={(event) => {
+          if (fallbackSrc) {
+            event.currentTarget.src = fallbackSrc
+          }
+        }}
       />
     </div>
   )
